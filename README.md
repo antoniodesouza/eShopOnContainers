@@ -1,5 +1,5 @@
 # eShopOnContainers - Microservices Architecture and Containers based Reference Application (**BETA state** - Visual Studio 2017 and CLI environments compatible)
-Sample .NET Core reference application, powered by Microsoft, based on a simplified microservices architecture and Docker containers.
+Exemplo de aplicativo de referência .NET Core, desenvolvido pela Microsoft, baseado em uma arquitetura de microsserviços simplificada e contêineres Docker.
 
 ## IMPORTANT NOTES!
 **You can use either the latest version of Visual Studio or simply Docker CLI and .NET CLI for Windows, Mac and Linux**. 
