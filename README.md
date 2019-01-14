@@ -1,28 +1,27 @@
-# eShopOnContainers - Microservices Architecture and Containers based Reference Application (**BETA state** - Visual Studio 2017 and CLI environments compatible)
+# Aplicação de referência baseada em arquitetura e recipientes de microsserviços ( estado BETA - compatível com ambientes Visual Studio 2017 e CLI)
 Exemplo de aplicativo de referência .NET Core, desenvolvido pela Microsoft, baseado em uma arquitetura de microsserviços simplificada e contêineres Docker.
 
-## IMPORTANT NOTES!
-**You can use either the latest version of Visual Studio or simply Docker CLI and .NET CLI for Windows, Mac and Linux**. 
+## ANOTAÇÕES IMPORTANTES!
+**Você pode usar a versão mais recente do Visual Studio ou simplesmente o Docker CLI e o .NET CLI para Windows, Mac e Linux**. 
 
-**Note for Pull Requests (PRs)**: We accept pull request from the community. When doing it, please do it onto the **DEV branch** which is the consolidated work-in-progress branch. Do not request it onto Master branch, if possible.
+**Nota para Pedidos de Pull (PRs)**: Aceitamos pedidos de pull da comunidade. Ao fazê-lo, por favor, faça-o no **DEV branch** que é o ramo consolidado do trabalho em andamento. Não o solicite no ramo principal, se possível.
 
-**NEWS / ANNOUNCEMENTS**
-Do you want to be up-to-date on .NET Architecture guidance and reference apps like eShopOnContainers? --> Subscribe by "WATCHING" this new GitHub repo: https://github.com/dotnet-architecture/News 
+**NOTÍCIAS / ANÚNCIOS**
+Você quer estar atualizado sobre as diretrizes de arquitetura .NET e aplicativos de referência como o eShopOnContainers? -> Assine por "WATCHING" este novo repositório do GitHub: https://github.com/dotnet-architecture/News 
 
-## Updated for .NET Core 2.2 "wave" of technologies
-eShopOnContainers is updated to .NET Core 2.x (currently updated to 2.2) "wave" of technologies. Not just compilation but also new recommended code in EF Core, ASP.NET Core, and other new related versions.
+## Atualizado para o .NET Core 2.2 "wave" de tecnologias
+O eShopOnContainers é atualizado para o .NET Core 2.x (atualmente atualizado para 2.2) "wave" de tecnologias. Não apenas compilação, mas também novo código recomendado no EF Core, ASP.NET Core e outras novas versões relacionadas.
 
-The **dockerfiles** in the solution have also been updated and now support [**Docker Multi-Stage**](https://blogs.msdn.microsoft.com/stevelasker/2017/09/11/net-and-multistage-dockerfiles/) since mid-December 2017.
+Os arquivos **dockerfiles** da solução também foram atualizados e agora suportam o [**Docker Multi-Stage**](https://blogs.msdn.microsoft.com/stevelasker/2017/09/11/net-and-multistage-dockerfiles/) desde meados de dezembro de 2017.
 
->**PLEASE** Read our [branch guide](./branch-guide.md) to know about our branching policy
+>**POR FAVOR** Leia noso [branch guide](./branch-guide.md) para saber sobre nossa política de branching
 
-> ### DISCLAIMER
-> **IMPORTANT:** The current state of this sample application is **BETA**, because we are constantly evolving towards newly released technologies. Therefore, many areas could be improved and change significantly while refactoring the current code and implementing new features. Feedback with improvements and pull requests from the community will be highly appreciated and accepted.
+> ### AVISO LEGAL
+> **IMPORTANTE:** O estado atual deste aplicativo de amostra é **BETA** , porque estamos constantemente evoluindo para tecnologias recém-lançadas. Portanto, muitas áreas podem ser melhoradas e alteradas de maneira significativa durante a recriação do código atual e a implementação de novos recursos. Feedback com melhorias e pedidos de pull da comunidade serão muito apreciados e aceitos
 >
-> This reference application proposes a simplified microservice oriented architecture implementation to introduce technologies like .NET Core with Docker containers through a comprehensive application. The chosen domain is eShop/eCommerce but simply because it is a well-known domain by most people/developers.
-However, this sample application should not be considered as an "eCommerce reference model" at all. The implemented business domain might not be ideal from an eCommerce business point of view. It is neither trying to solve all the problems in a large, scalable and mission-critical distributed system. It is just a bootstrap for developers to easily get started in the world of Docker containers and microservices with .NET Core.
-> <p>For example, the next step after running the solution in the local dev PC and understanding Docker containers and microservices development with .NET Core, is to select a microservice cluster/orchestrator like Kubernetes in Azure (AKS) or Azure Service Fabric, both environments tested and supported by this solution.
-> Additional steps would be to move your databases to HA cloud services (like Azure SQL Database) or switch your EventBus to use Azure Service Bus (instead of bare-bone RabbitMQ) or any other production-ready Service Bus in the market.
+> Este aplicativo de referência propõe uma implementação simplificada da arquitetura orientada a microserviço para apresentar tecnologias como o .NET Core com contêineres Docker por meio de um aplicativo abrangente. O domínio escolhido é eShop / eCommerce, mas simplesmente porque é um domínio bem conhecido pela maioria das pessoas / desenvolvedores. No entanto, esse aplicativo de exemplo não deve ser considerado como um "modelo de referência de comércio eletrônico". O domínio de negócios implementado pode não ser ideal do ponto de vista de um negócio de comércio eletrônico. Não está tentando resolver todos os problemas em um sistema distribuído grande, escalável e de missão crítica. É apenas um bootstrap para que os desenvolvedores possam começar facilmente no mundo dos contêineres e microsserviços do Docker com o .NET Core.
+> <p>Por exemplo, a próxima etapa depois de executar a solução no PC local e entender o desenvolvimento de contêineres e microsserviços do Docker com o .NET Core é selecionar um orquestrador / cluster de microsserviço como o Kubernetes no Azure (AKS) ou o Azure Service Fabric, ambos os ambientes testados e suportado por esta solução.
+> Etapas adicionais seriam mover seus bancos de dados para serviços de nuvem HA (como o Banco de Dados SQL do Azure) ou alternar seu EventBus para usar o Barramento de Serviço do Azure (em vez do RabbitMQ simples) ou qualquer outro Barramento de Serviço pronto para produção no mercado.
 
 ![image](https://user-images.githubusercontent.com/1712635/40397331-059a7ec6-5de7-11e8-8542-a597eca16fef.png)
 
