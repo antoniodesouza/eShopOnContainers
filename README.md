@@ -25,45 +25,44 @@ Os arquivos **dockerfiles** da solução também foram atualizados e agora supor
 
 ![image](https://user-images.githubusercontent.com/1712635/40397331-059a7ec6-5de7-11e8-8542-a597eca16fef.png)
 
-> Read the planned <a href='https://github.com/dotnet/eShopOnContainers/wiki/01.-Roadmap-and-Milestones-for-future-releases'>Roadmap and Milestones for future releases of eShopOnContainers</a> within the Wiki for further info about possible new implementations and provide feedback at the  <a href='https://github.com/dotnet/eShopOnContainers/issues'>ISSUES section</a> if you'd like to see any specific scenario implemented or improved. Also, feel free to discuss on any current issue.
+> Leia o <a href='https://github.com/dotnet/eShopOnContainers/wiki/01.-Roadmap-and-Milestones-for-future-releases'>o roteiro e os marcos planejados para futuras versões do eShopOnContainers</a> no Wiki para obter mais informações sobre possíveis novas implementações e fornecer feedback na <a href='https://github.com/dotnet/eShopOnContainers/issues'>seção ISSUES</a> se quiser ver qualquer cenário específico implementado ou aprimorado. Além disso, sinta-se à vontade para discutir sobre qualquer assunto atual.
 
-### Architecture overview 
-This reference application is cross-platform at the server and client side, thanks to .NET Core services capable of running on Linux or Windows containers depending on your Docker host, and to Xamarin for mobile apps running on Android, iOS or Windows/UWP plus any browser for the client web apps.
-The architecture proposes a microservice oriented architecture implementation with multiple autonomous microservices (each one owning its own data/db) and implementing different approaches within each microservice (simple CRUD vs. DDD/CQRS patterns) using Http as the communication protocol between the client apps and the microservices and supports asynchronous communication for data updates propagation across multiple services based on Integration Events and an Event Bus (a light message broker, to choose between RabbitMQ or Azure Service Bus, underneath) plus other features defined at the <a href='https://github.com/dotnet/eShopOnContainers/wiki/01.-Roadmap-and-Milestones-for-future-releases'>roadmap</a>.
+### Visão geral da arquitetura 
+Esse aplicativo de referência é multi-plataforma no lado do servidor e do cliente, graças aos serviços .NET Core capazes de rodar em containers Linux ou Windows dependendo do seu host Docker, e ao Xamarin para aplicativos móveis rodando em Android, iOS ou Windows / UWP qualquer navegador para os aplicativos da web do cliente. 
+A arquitetura propõe uma implementação de arquitetura orientada a microsserviços com múltiplos microsserviços autônomos (cada um possuindo seus próprios dados / db) e implementando diferentes abordagens dentro de cada microsserviço (padrões simples CRUD vs. DDD / CQRS) usando Http como o protocolo de comunicação entre os aplicativos cliente e os microsserviços e oferece suporte à comunicação assíncrona para propagação de atualizações de dados em vários serviços com base em eventos de integração e um barramento de eventos (um media broker de mensagens, para escolher entre o RabbitMQ ou o Barramento de Serviço do Azure,<a href='https://github.com/dotnet/eShopOnContainers/wiki/01.-Roadmap-and-Milestones-for-future-releases'>roteiro</a>.
 <p>
 <img src="img/eshop_logo.png">
 <img src="https://user-images.githubusercontent.com/1712635/38758862-d4b42498-3f27-11e8-8dad-db60b0fa05d3.png">
 <p>
 
-> ### Important Note on API Gateways and published APIs
-> Since April 2018, we have introduced the implementation of the [API Gateway pattern](http://microservices.io/patterns/apigateway.html) and [Backend-For-Front-End (BFF) pattern](https://samnewman.io/patterns/architectural/bff/) in eShopOnContainers architecture, so you can filter and publish simplified APIs and URIs and apply additional security in that tier while hiding/securing the internal microservices to the client apps or outside consumers. These sample API Gateways in eShopOnContainers are based on [Ocelot](https://github.com/ThreeMammals/Ocelot), an OSS lightweight API Gateway solution explained [here](http://threemammals.com/ocelot). The deployed API Gateways are autonomous and can be deployed as your own custom microservices/containers, as it is currently done in eShopOnContainers, so you can test it even in a simple development environment with just Docker engine or deploy it into orchestrators like Kubernetes in AKS or Service Fabric. 
+> ### Nota importante sobre gateways de API e APIs publicadas
+> Desde abril de 2018, introduzimos a implementação do [padrão de Gateway de API](http://microservices.io/patterns/apigateway.html) e [Backend-For-Front-End (BFF) pattern](https://samnewman.io/patterns/architectural/bff/) na arquitetura eShopOnContainers, para que você possa filtrar e publicar APIs e URIs simplificados e aplicar segurança adicional nesse nível enquanto oculta/protege os microsserviços internos para os aplicativos clientes ou consumidores externos. Esses exemplos de Gateways de API em eShopOnContainers são baseados no [Ocelot](https://github.com/ThreeMammals/Ocelot), uma solução leve de Gateway de API do OSS explicada [aqui](http://threemammals.com/ocelot). Os API Gateways implantados são autônomos e podem ser implantados como seus próprios microsserviços / contêineres personalizados, como atualmente é feito em eShopOnContainers, para que você possa testá-lo em um ambiente de desenvolvimento simples com o mecanismo Docker ou implantá-lo em orquestradores como o Kubernetes no AKS ou Service Fabric. 
 
-> For your production-ready architecture you can either keep using [Ocelot](https://github.com/ThreeMammals/Ocelot) which is simple and easy to use and used in production by significant companies or if you need further functionality and a much richer set of features suitable for commercial APIs, you can also substitute those API Gateways and use [Azure API Management](https://azure.microsoft.com/en-us/services/api-management/) or any other commercial API Gateway, as shown in the following image.
+> Para sua arquitetura pronta para produção, você pode continuar usando o [Ocelot](https://github.com/ThreeMammals/Ocelot) que é simples e fácil de usar e usado na produção por empresas importantes, ou se você precisar de mais funcionalidades e um conjunto muito mais rico de recursos adequados para Gateways APIs comerciais e use o [Azure API Management](https://azure.microsoft.com/en-us/services/api-management/) ou qualquer outro API Gateway comercial, conforme mostrado na imagem a seguir.
 
 <p>
 <img src="img/eShopOnContainers-Architecture-With-Azure-API-Management.png">
 <p>
 
-> The sample code in this repo is NOT making use of Azure API Management in order to be able to provide an "F5 experience" in Visual Studio (or CLI) of the sample with no up-front dependencies in Azure. But you could evaluate API Gateways alternatives when building for production.
+> O código de exemplo neste repositório NÃO está usando o Gerenciamento de API do Azure para poder fornecer uma "experiência F5" no Visual Studio (ou CLI) da amostra sem dependências iniciais no Azure. Mas você pode avaliar as alternativas de Gateways de API ao criar para produção.
 
-> ### Internal architecture and design of the microservices
+> ### Arquitetura interna e design dos microsserviços
 
-> The microservices are different in type, meaning different internal architecture pattern approaches depending on its purpose, as shown in the image below.
+> Os microsserviços são diferentes em tipo, o que significa diferentes abordagens de padrões internos de arquitetura, dependendo de sua finalidade, conforme mostrado na imagem abaixo.
 <p>
 <img src="img/eShopOnContainers_Types_Of_Microservices.png">
 <p>
 <p>
 
-> ### Important Note on Database Servers/Containers
-> In this solution's current configuration for a development environment, the SQL databases are automatically deployed with sample data into a single SQL Server container (a single shared Docker container for SQL databases) so the whole solution can be up and running without any dependency to any cloud or a specific server. Each database could also be deployed as a single Docker container, but then you'd need more than 8GB of RAM assigned to Docker in your development machine in order to be able to run 3 SQL Server Docker containers in your Docker Linux host in "Docker for Windows" or "Docker for Mac" development environments.
-> <p> A similar case is defined in regard to Redis cache running as a container for the development environment. Or a No-SQL database (MongoDB) running as a container.
-> <p> However, in a real production environment it is recommended to have your databases (SQL Server, Redis, and the NO-SQL database, in this case) in HA (High Available) services like Azure SQL Database, Redis as a service and Azure CosmosDB instead the MongoDB container (as both systems share the same access protocol). If you want to change to a production configuration, you'll just need to change the connection strings once you have set up the servers in an HA cloud or on-premises.
+> ### Nota importante sobre servidores/contêineres de banco de dados
+> Na configuração atual desta solução para um ambiente de desenvolvimento, os bancos de dados SQL são implantados automaticamente com dados de amostra em um único contêiner do SQL Server (um único contêiner Docker compartilhado para bancos de dados SQL) para que toda a solução esteja ativa e sem dependência de qualquer nuvem ou um servidor específico. Cada banco de dados também poderia ser implantado como um único contêiner Docker, mas você precisaria de mais de 8 GB de RAM atribuídos ao Docker em sua máquina de desenvolvimento para poder executar 3 contêineres do SQL Server Docker em seu host do Docker Linux em "Docker" para ambientes de desenvolvimento Windows "ou" Docker for Mac ".
+> <p> Um caso semelhante é definido em relação ao cache Redis sendo executado como um contêiner para o ambiente de desenvolvimento. Ou um banco de dados No-SQL (MongoDB) em execução como um contêiner.
+> <p> No entanto, em um ambiente de produção real, recomenda-se ter seus bancos de dados (SQL Server, Redis e banco de dados NO-SQL, nesse caso) em serviços de alta disponibilidade como o Banco de Dados SQL do Azure, Redis como serviço e Azure CosmosDB. em vez disso, o contêiner MongoDB (como ambos os sistemas compartilham o mesmo protocolo de acesso). Se você quiser mudar para uma configuração de produção, só precisará alterar as sequências de conexão depois de configurar os servidores em uma nuvem HA ou no local.
 
-## Related documentation and guidance
-While developing this reference application, we've been creating a reference <b>Guide/eBook</b> focusing on <b>architecting and developing containerized and microservice based .NET Applications</b> (download link available below) which explains in detail how to develop this kind of architectural style (microservices, Docker containers, Domain-Driven Design for certain microservices) plus other simpler architectural styles, like monolithic apps that can also live as Docker containers.
+## Documentação e orientação relacionadas
+Ao desenvolver este aplicativo de referência, estamos criando um <b>Guia/eBook</b> de referência focado na <b>arquitetura e desenvolvimento de aplicativos .NET baseados em microsserviços e conteinerizados</b> (link de download disponível abaixo) que explica detalhadamente como desenvolver esse tipo de estilo arquitetônico (microsserviços, Docker recipientes, Design dirigido por domínio para determinados microsserviços), além de outros estilos arquiteturais mais simples, como aplicativos monolíticos que também podem ser armazenados como contêineres do Docker.
 <p>
-There are also additional eBooks focusing on Containers/Docker lifecycle (DevOps, CI/CD, etc.) with Microsoft Tools, already published plus an additional eBook focusing on Enterprise Apps Patterns with Xamarin.Forms.
-You can download them and start reviewing these Guides/eBooks here:
+Há também eBooks adicionais com foco no ciclo de vida Containers/Docker (DevOps, CI / CD, etc.) com o Microsoft Tools, já publicados, além de um eBook adicional com foco nos Enterprise Apps Patterns com Xamarin.Forms. Você pode baixá-los e começar a rever estes Guias/e-Livros aqui:
 <p>
 
 | Architecting & Developing | Containers Lifecycle & CI/CD | App patterns with Xamarin.Forms |
@@ -71,56 +70,58 @@ You can download them and start reviewing these Guides/eBooks here:
 | <a href='https://aka.ms/microservicesebook'><img src="img/ebook_arch_dev_microservices_containers_cover.png"> </a> | <a href='https://aka.ms/dockerlifecycleebook'> <img src="img/ebook_containers_lifecycle.png"> </a> | <a href='https://aka.ms/xamarinpatternsebook'> <img src="img/xamarin-enterprise-patterns-ebook-cover-small.png"> </a> |
 | <sup> <a href='https://aka.ms/microservicesebook'>**Download .PDF** (v2.2 Edition)</a> </sup>  | <sup> <a href='https://aka.ms/dockerlifecycleebook'>**Download** </a>  </sup> | <sup> <a href='https://aka.ms/xamarinpatternsebook'>**Download**  </a>  </sup> |
 
-Download in other formats (**eReaders** like **MOBI**, **EPUB**) and other eBooks at the [.NET Architecture center](http://dot.net/architecture).
+Download em outros formatos (**eReaders** como **MOBI**, **EPUB**) e outros eBooks em [.NET Architecture center](http://dot.net/architecture).
 
-Send feedback to [dotnet-architecture-ebooks-feedback@service.microsoft.com](dotnet-architecture-ebooks-feedback@service.microsoft.com)
+Envie seu comentário para [dotnet-architecture-ebooks-feedback@service.microsoft.com](dotnet-architecture-ebooks-feedback@service.microsoft.com)
 
-However, we encourage you to download and review the [Architecting and Developing Microservices eBook](https://aka.ms/microservicesebook) because the architectural styles and architectural patterns and technologies explained in the guide are using this reference application when explaining many pattern implementations, so you'll understand the context, design and decisions taken in the current architecture and internal designs much better.
+No entanto, incentivamos você a fazer o download e revisar o [Architecting and Developing Microservices eBook](https://aka.ms/microservicesebook)  porque os estilos arquiteturais e padrões de arquitetura e tecnologias explicados no guia estão usando este aplicativo de referência ao explicar muitas implementações de padrão, para que você entenda muito melhor o contexto, design e decisões tomadas na arquitetura atual e projetos internos.
 
-## Overview of the application code
-In this repo you can find a sample reference application that will help you to understand how to implement a microservice architecture based application using <b>.NET Core</b> and <b>Docker</b>.
 
-The example business domain or scenario is based on an eShop or eCommerce which is implemented as a multi-container application. Each container is a microservice deployment (like the basket-microservice, catalog-microservice, ordering-microservice and the identity-microservice) which is developed using ASP.NET Core running on .NET Core so they can run either on Linux Containers and Windows Containers.
-The screenshot below shows the VS Solution structure for those microservices/containers and client apps.
+## Visão geral do código do aplicativo
+Neste repositório, você pode encontrar um exemplo de aplicativo de referência que o ajudará a entender como implementar um aplicativo baseado na arquitetura de microsserviço usando o <b>.NET Core</b> e o <b>Docker</b>.
 
-- (*Recommended when getting started*) Open <b>eShopOnContainers-ServicesAndWebApps.sln</b> for a solution containing just the server-side projects related to the microservices and web applications.
-- Open <b>eShopOnContainers-MobileApps.sln</b> for a solution containing just the client mobile app projects (Xamarin mobile apps only). It works independently based on mocks, too.
-- Open <b>eShopOnContainers.sln</b> for a solution containing all the projects (All client apps and services).
+O exemplo de domínio ou cenário de negócios é baseado em um eShop ou eCommerce que é implementado como um aplicativo de vários contêineres. Cada contêiner é uma implantação de microsserviço (como o basket-microservice, catálogo-microservice, ordering-microservice e identity-microservice) que é desenvolvido usando o ASP.NET Core sendo executado no .NET Core para que eles possam ser executados em contêineres do Linux e contêineres do Windows. 
+A captura de tela abaixo mostra a estrutura da VS Solution para os microservices/containers e aplicativos clientes.
+
+
+- (*Recomendado quando começar*) Abra o <b>eShopOnContainers-ServicesAndWebApps.sln</b> para obter uma solução contendo apenas os projetos do lado do servidor relacionados aos microservices e aplicativos da web.
+- Abra o <b>eShopOnContainers-MobileApps.sln</b> para obter uma solução contendo apenas os projetos de aplicativos móveis do cliente (somente aplicativos móveis Xamarin). Ele funciona de forma independente com base em mocks também.
+- Abra o <b>eShopOnContainers.sln</b>  para obter uma solução contendo todos os projetos (todos os aplicativos e serviços do cliente).
 
 <img src="img/vs-solution-structure.png">
 
-Finally, those microservices are consumed by multiple client web and mobile apps, as described below.
+Por fim, esses microsserviços são consumidos por vários aplicativos da Web e móveis para clientes, conforme descrito abaixo.
 <br>
-<b>*MVC Application (ASP.NET Core)*</b>: It's an MVC application where you can find interesting scenarios on how to consume HTTP-based microservices from C# running in the server side, as it is a typical ASP.NET Core MVC application. Since it is a server-side application, access to other containers/microservices is done within the internal Docker Host network with its internal name resolution.
+<b>*MVC Application (ASP.NET Core)*</b>: É um aplicativo MVC onde você pode encontrar cenários interessantes sobre como consumir microsserviços baseados em HTTP a partir de C # em execução no lado do servidor, pois é um típico aplicativo ASP.NET Core MVC. Como é um aplicativo do lado do servidor, o acesso a outros contêineres/microsserviços é feito dentro da rede interna do Docker Host com sua resolução interna de nomes.
 <img src="img/eshop-webmvc-app-screenshot.png">
 <br>
-<b>*SPA (Single Page Application)*</b>: Providing similar "eShop business functionality" but developed with Angular, Typescript and slightly using ASP.NET Core MVC. This is another approach for client web applications to be used when you want to have a more modern client behavior which is not behaving with the typical browser round-trip on every action but behaving like a Single-Page-Application which is more similar to a desktop app usage experience. The consumption of the HTTP-based microservices is done from TypeScript/JavaScript in the client browser, so the client calls to the microservices come from out of the Docker Host internal network (Like from your network or even from the Internet).
+<b>*SPA (Aplicativo de Página Única)*</b>: Fornecer "funcionalidade de negócios do eShop" semelhante, mas desenvolvida com o Angular, o Typescript e usando um pouco o ASP.NET Core MVC. Essa é outra abordagem para aplicativos da Web do cliente serem usados ​​quando você deseja ter um comportamento de cliente mais moderno que não esteja se comportando com a típica viagem de ida e volta do navegador em cada ação, mas comportando-se como um Aplicativo de Página Única mais semelhante a um experiência de uso de aplicativos de desktop. O consumo dos microsserviços baseados em HTTP é feito a partir do TypeScript/JavaScript no navegador do cliente, de modo que as chamadas do cliente para os microsserviços saem da rede interna do Docker Host (como da sua rede ou até mesmo da Internet).
 <img src="img/eshop-webspa-app-screenshot.png">
 <br>
-<b>*Xamarin Mobile App (For iOS, Android and Windows/UWP)*</b>: It is a client mobile app supporting the most common mobile OS platforms (iOS, Android and Windows/UWP). In this case, the consumption of the microservices is done from C# but running on the client devices, so out of the Docker Host internal network (Like from your network or even the Internet).
+<b>*Xamarin Mobile App (para iOS, Android e Windows/UWP)*</b>: É um aplicativo móvel cliente que suporta as plataformas mais comuns de sistemas operacionais móveis (iOS, Android e Windows/UWP). Nesse caso, o consumo dos microsserviços é feito a partir do C #, mas executado nos dispositivos do cliente, portanto, fora da rede interna do Docker Host (como na sua rede ou até mesmo na Internet).
 
 <img src="img/xamarin-mobile-App.png">
 
-## Setting up your development environment for eShopOnContainers
-### Visual Studio 2017 and Windows based
-This is the more straightforward way to get started:
+## Configurando seu ambiente de desenvolvimento para o eShopOnContainers
+### Visual Studio 2017 e baseado em Windows
+Esta é a maneira mais simples de começar:
 https://github.com/dotnet-architecture/eShopOnContainers/wiki/02.-Setting-eShopOnContainers-in-a-Visual-Studio-2017-environment
 
-### CLI and Windows based
-For those who prefer the CLI on Windows, using dotnet CLI, docker CLI and VS Code for Windows:
+### CLI e Windows
+Para aqueles que preferem o CLI no Windows, usando o dotnet CLI, o docker CLI e o VS Code para Windows:
 https://github.com/dotnet/eShopOnContainers/wiki/03.-Setting-the-eShopOnContainers-solution-up-in-a-Windows-CLI-environment-(dotnet-CLI,-Docker-CLI-and-VS-Code)
 
-### CLI and Mac based
-For those who prefer the CLI on a Mac, using dotnet CLI, docker CLI and VS Code for Mac:
+### CLI e Mac baseados
+Para aqueles que preferem o CLI em um Mac, usando o dotnet CLI, o docker CLI e o VS Code para Mac:
 https://github.com/dotnet-architecture/eShopOnContainers/wiki/04.-Setting-eShopOnContainer-solution-up-in-a-Mac,-VS-for-Mac-or-with-CLI-environment--(dotnet-CLI,-Docker-CLI-and-VS-Code)
 
-## Orchestrators: Kubernetes and Service Fabric
-See at the [Wiki](https://github.com/dotnet-architecture/eShopOnContainers/wiki) the posts on setup/instructions about how to deploy to Kubernetes or Service Fabric in Azure (although you could also deploy to any other cloud or on-premises).
+## Orquestradores: Kubernetes e Service Fabric
+Veja no [Wiki](https://github.com/dotnet-architecture/eShopOnContainers/wiki) os posts sobre configuração/instruções sobre como implantar no Kubernetes ou Service Fabric no Azure (embora você possa também implantar em qualquer outra nuvem ou local).
 
-## Sending feedback and pull requests
-As mentioned, we'd appreciate your feedback, improvements and ideas.
-You can create new issues at the issues section, do pull requests and/or send emails to **eshop_feedback@service.microsoft.com**
+## Enviando feedback e solicitações de pull
+Como mencionado, gostaríamos de receber seus comentários, melhorias e ideias. 
+Você pode criar novos problemas na seção de problemas, fazer solicitações e/ou enviar emails para **eshop_feedback@service.microsoft.com**
 
 ## Questions
-[QUESTION] Answer +1 if the solution is working for you (Through VS2017 or CLI environment):
+[PERGUNTA] Responda +1 se a solução estiver funcionando para você (Por meio do ambiente VS2017 ou CLI):
 https://github.com/dotnet/eShopOnContainers/issues/107
