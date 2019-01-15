@@ -14,7 +14,7 @@ O eShopOnContainers é atualizado para o .NET Core 2.x (atualmente atualizado pa
 
 Os arquivos **dockerfiles** da solução também foram atualizados e agora suportam o [**Docker Multi-Stage**](https://blogs.msdn.microsoft.com/stevelasker/2017/09/11/net-and-multistage-dockerfiles/) desde meados de dezembro de 2017.
 
->**POR FAVOR** Leia noso [branch guide](./branch-guide.md) para saber sobre nossa política de branching
+>**POR FAVOR** Leia nosso [branch guide](./branch-guide.md) para saber sobre nossa política de branching
 
 > ### AVISO LEGAL
 > **IMPORTANTE:** O estado atual deste aplicativo de amostra é **BETA** , porque estamos constantemente evoluindo para tecnologias recém-lançadas. Portanto, muitas áreas podem ser melhoradas e alteradas de maneira significativa durante a recriação do código atual e a implementação de novos recursos. Feedback com melhorias e pedidos de pull da comunidade serão muito apreciados e aceitos
